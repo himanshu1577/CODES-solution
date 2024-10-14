@@ -1,17 +1,28 @@
 #include<bits/stdc++.h>
 using namespace std;
+int count(int n){
+    if(n == 1) return 0;
+    int p = (n-1)*n;
+    return p/2;
+}
 
 int main(){
-    int t; cin>>t;
-    while(t--){
+    int tt; cin>>tt;
+    while(tt--){
         int n; cin>>n;
+        vector<int> arr(n);
         map<int,int> mp;
-        int cnt = 0;
-        for(int i= 0;i<n;i++){
-            int a; cin>>a;
-           cnt = cnt +  mp[a - i];
-           mp[a- i]++;
+        for(int i= 0 ;i<n;i++){
+            cin>>arr[i];
+            mp[arr[i] - i]++;
         }
-		cout<<cnt<<endl;
+        int cnt = 0;
+        for(auto e : mp){
+            int curr = e.second;
+            cnt = cnt + count(curr);
+        }
+        cout<<cnt<<endl;
+
     }
+    
 }
